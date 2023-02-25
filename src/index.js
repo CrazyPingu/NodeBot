@@ -1,9 +1,10 @@
-const { Client, Events, GatewayIntentBits, SlashCommandBuilder, Intents, Collection } = require('discord.js');
+const { Client, GatewayIntentBits, Collection } = require('discord.js');
 const { token } = require('../config.json');
 const fs = require('fs');
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 client.commands = new Collection();
+client.commandArray = [];
 
 const functionFolder = fs.readdirSync('./src/functions');
 
@@ -16,4 +17,7 @@ for (const folder of functionFolder) {
     }
 }
 
+
+client.handleEvents();
+client.handleCommands();
 client.login(token);
