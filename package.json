@@ -1,0 +1,22 @@
+{
+  "dependencies": {
+    "discord.js": "^14.7.1"
+  },
+  "name": "discordbot",
+  "version": "1.0.0",
+  "main": "./src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CrazyPingu/DiscordBot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CrazyPingu/DiscordBot/issues"
+  },
+  "homepage": "https://github.com/CrazyPingu/DiscordBot#readme",
+  "description": ""
+}
