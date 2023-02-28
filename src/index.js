@@ -17,7 +17,6 @@ for (const folder of functionFolder) {
     }
 }
 
-
 client.handleEvents();
 client.handleCommands();
 client.login(token);
