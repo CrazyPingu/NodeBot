@@ -22,8 +22,7 @@ client.distube = new DisTube(client, {
     leaveOnEmpty: true,
     leaveOnFinish: true,
     nsfw: true,
-    streamType: 0,
-    leaveOnStop: true,
+    leaveOnStop: false,
 });
 
 const functionFolder = fs.readdirSync('./src/functions');
