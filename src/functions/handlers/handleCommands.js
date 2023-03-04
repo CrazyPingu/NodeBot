@@ -3,7 +3,6 @@ const fs = require('fs');
 module.exports = (client) => {
     client.handleCommands = async (interaction) => {
         const commandFolders = fs.readdirSync('./src/commands');
-
         for (const folder of commandFolders) {
             const commandFiles = fs
                 .readdirSync(`./src/commands/${folder}`)
