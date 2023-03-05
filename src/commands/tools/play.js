@@ -19,15 +19,19 @@ module.exports = {
         }
 
         const queue = client.distube.getQueue(interaction);
-        const currentSong = queue.songs[0];
+        const currentSong = queue.songs[queue.songs.length - 1]
         const embed = new EmbedBuilder()
             .setTitle('Now Playing')
             .setDescription(`Song: [${currentSong.name}](${currentSong.url})
-                            Artist: [${currentSong.uploader.name}](${currentSong.uploader.url})
-                            Duration: \`${currentSong.formattedDuration}\`
-                            Requested by: ${interaction.user}`)
+                Artist: [${currentSong.uploader.name}](${currentSong.uploader.url})
+                Duration: \`${currentSong.formattedDuration}\`
+                Requested by: ${interaction.user}`)
             .setColor('#' + (Math.floor(Math.random() * 16777215).toString(16)));
 
+        if (queue.songs.length > 1) {
+            embed.setTitle('Added to Queue');
+        }
         interaction.reply({ embeds: [embed] });
+
     },
 };

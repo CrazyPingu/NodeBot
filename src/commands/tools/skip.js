@@ -17,7 +17,7 @@ module.exports = {
             const embed = new EmbedBuilder()
                 .setTitle('Skipped')
                 .setDescription(`Skipped ` + queue.songs[0].name
-                    + ` \`by\` ` + queue.songs[0].uploader.name)
+                    + ` \`BY\` ` + queue.songs[0].uploader.name)
                 .setColor('#' + (Math.floor(Math.random() * 16777215).toString(16)));
 
             interaction.reply({ embeds: [embed] });
