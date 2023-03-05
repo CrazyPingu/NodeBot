@@ -13,7 +13,7 @@ module.exports = {
         if (!voiceChannel) return interaction.reply('You need to be in a voice channel to play music!');
 
         try {
-            await client.distube.play(voiceChannel, interaction.options.getString('song'))
+            await client.distube.play(voiceChannel, interaction.options.getString('song'), { quality: 'highestaudio' })
         } catch (err) {
             console.error(err);
         }

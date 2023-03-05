@@ -11,17 +11,20 @@ Create a new file in the root called _config.json_ that will have this content:
 
 Install FFMPEG
 
-Modify the file _node_modules/@discordjs/voice/dist/index.js_ around line 1362.
+Modify the file _node_modules/@discordjs/voice/dist/index.js_ commenting out the line 280.
 It will have to be like this:
 ```javascript
-  addStatePacket(packet) {
-    this.packets.state = packet;
-    this.configureNetworking();	// Add this line
-    if (typeof packet.self_deaf !== "undefined")
-      this.joinConfig.selfDeaf = packet.self_deaf;
-    if (typeof packet.self_mute !== "undefined")
-      this.joinConfig.selfMute = packet.self_mute;
-    if (packet.channel_id)
-      this.joinConfig.channelId = packet.channel_id;
+  constructor(remote, debug = false) {
+    super();
+    this.socket = (0, import_node_dgram.createSocket)("udp4");
+    this.socket.on("error", (error) => this.emit("error", error));
+    this.socket.on("message", (buffer) => this.onMessage(buffer));
+    this.socket.on("close", () => this.emit("close"));
+    this.remote = remote;
+    this.keepAlives = [];
+    this.keepAliveBuffer = import_node_buffer2.Buffer.alloc(8);
+    // this.keepAliveInterval = setInterval(() => this.keepAlive(), KEEP_ALIVE_INTERVAL);
+    setImmediate(() => this.keepAlive());
+    this.debug = debug ? (message) => this.emit("debug", message) : null;
   }
 ```
