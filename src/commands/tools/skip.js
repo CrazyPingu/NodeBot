@@ -1,5 +1,4 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
-const { default: dist, DisTubeError } = require('distube');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -9,11 +8,16 @@ module.exports = {
         try {
             const queue = client.distube.getQueue(interaction);
             if (!queue) return interaction.reply('There is no song playing right now!');
-            client.distube.skip(interaction);
-            console.log('Skipped the current song');
+            // client.distube.skip(interaction);
+            if (queue.autoplay || queue.songs.length > 1) {
+                client.distube.skip(interaction)
+            }else{
+                client.distube.stop(interaction)
+            }
             const embed = new EmbedBuilder()
                 .setTitle('Skipped')
-                .setDescription(`Skipped the current song`)
+                .setDescription(`Skipped ` + queue.songs[0].name
+                    + ` \`by\` ` + queue.songs[0].uploader.name)
                 .setColor('#' + (Math.floor(Math.random() * 16777215).toString(16)));
 
             interaction.reply({ embeds: [embed] });
