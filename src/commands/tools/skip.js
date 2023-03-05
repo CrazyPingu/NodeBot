@@ -8,7 +8,6 @@ module.exports = {
         try {
             const queue = client.distube.getQueue(interaction);
             if (!queue) return interaction.reply('There is no song playing right now!');
-            // client.distube.skip(interaction);
             if (queue.autoplay || queue.songs.length > 1) {
                 client.distube.skip(interaction)
             }else{

@@ -4,12 +4,11 @@ const path = require('node:path');
 
 module.exports = (client) => {
 	const commands = [];
-	// Grab all the command files from the commands directory you created earlier
 	const commandsPath = path.join(__dirname, '../../commands/tools/');
 	const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
 
 	for (const file of commandFiles) {
-		const command = require(`../../commands/tools/${file}`);
+		const command = require(path.join(__dirname, `../../commands/tools/${file}`));
 		commands.push(command.data.toJSON());
 	}
 

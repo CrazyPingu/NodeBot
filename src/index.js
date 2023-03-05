@@ -2,6 +2,7 @@ const { Client, GatewayIntentBits, Collection } = require('discord.js');
 const { token, clientId } = require('../config.json');
 const { DisTube } = require('distube');
 const fs = require('fs');
+const path = require('path');
 
 const client = new Client({
     intents: [
@@ -25,14 +26,14 @@ client.distube = new DisTube(client, {
     leaveOnStop: false,
 });
 
-const functionFolder = fs.readdirSync('./src/functions');
+const functionFolder = fs.readdirSync(path.join(__dirname, 'functions'));
 
 for (const folder of functionFolder) {
     const functionFiles = fs
-        .readdirSync(`./src/functions/${folder}`)
+        .readdirSync(path.join(__dirname, `functions/${folder}`))
         .filter(file => file.endsWith('.js'));
     for(const file of functionFiles) {
-        require(`./functions/${folder}/${file}`)(client);
+        require(path.join(__dirname, `functions/${folder}/${file}`))(client);
     }
 }
 
