@@ -9,6 +9,7 @@ module.exports = {
                 .setDescription('The song you want to play')
                 .setRequired(true)),
     async execute(interaction, client) {
+    	await interaction.deferReply();
         const voiceChannel = interaction.member.voice.channel;
         if (!voiceChannel) return interaction.reply('You need to be in a voice channel to play music!');
 
@@ -31,7 +32,6 @@ module.exports = {
         if (queue.songs.length > 1) {
             embed.setTitle('Added to Queue');
         }
-        interaction.reply({ embeds: [embed] });
-
+        await interaction.editReply({ embeds: [embed] });
     },
 };
