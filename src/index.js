@@ -23,7 +23,7 @@ client.distube = new DisTube(client, {
     leaveOnEmpty: true,
     leaveOnFinish: true,
     nsfw: true,
-    leaveOnStop: false,
+    leaveOnStop: true,
 });
 
 const functionFolder = fs.readdirSync(path.join(__dirname, 'functions'));
